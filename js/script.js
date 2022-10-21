@@ -31,8 +31,10 @@ let score = 0;
 playBtn.addEventListener('click', init);
 //init il gioco
 function init(){
+
   let diffSet = diffArr[setDiff.value];
   generateGrid(diffSet);
+  generateBombs(diffSet);
 }
 
 //creiamo il singolo blocco con 2 parametri-idAtt identifica il blocco
@@ -42,9 +44,37 @@ function createBlock(idAtt, blockEls){
   block.classList.add('block'+blockEls)
   block.idAtt = idAtt;
   block.innerHTML = `${idAtt}`;
-  // block.addEventListener('click', handelBlock);
+  block.addEventListener('click', handleBlock);
   return block;
 }
+
+//gestiamo il click del blocco con handleBlock
+function handleBlock(){
+  console.log(this.idAtt);
+  
+}
+
+//funzione per generare le bombe
+function generateBombs(blockEls){
+  //creo array per pushare le bombe generate
+  const bombsGenerated = [];
+  //variabile da definire nel ciclo
+  let bomb;
+  //fino a che la lunghezza di bombe generate non e uguale o min del numero di bombe ripeti
+  while(bombsGenerated.length <= BOMBS_NUMS){
+    //genera un num random da salvare in bomb
+    bomb = generateRandomNumber(1, blockEls);
+    //se il numero saltato fuori da bomb non e dentro l'array di bombe generate allora pushalo
+    if(!bombsGenerated.includes(bomb)){
+      bombsGenerated.push(bomb);
+    }
+
+  }
+  console.log("-----------", bombsGenerated);
+
+}
+
+
 // generiamo la griglia mandando in loop createBlock e stampando in pagina
 function generateGrid(blockEls){
   
@@ -52,4 +82,8 @@ function generateGrid(blockEls){
     const cell = createBlock(i, blockEls);
     playField.append(cell);
   }
+}
+
+function generateRandomNumber(min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
