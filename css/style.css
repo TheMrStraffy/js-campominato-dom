@@ -1,0 +1,37 @@
+header{
+  height: 120px;
+}
+
+main{
+  height: calc(100vh - 200px);
+  background-color: aquamarine;
+}
+
+.block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  
+}
+.blockClicked{
+  background-color: aqua;
+}
+
+footer{
+  height: 80px;
+}
+
+.block100{
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+
+.block81{
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+.block49{
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+}
